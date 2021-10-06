@@ -25,7 +25,7 @@ public class JDBCTests {
 		
 		try(Connection con =
 				DriverManager.getConnection(
-						"jdbc:mysql://127.0.0.1:3306/exam?serverTimezone=Asia/Seoul","root","1234"
+						"jdbc:mysql://127.0.0.1:3306/exam?serverTimezone=Asia/Seoul","root","1111"
 						)){
 			log.info(con);
 		} catch(Exception e) {
