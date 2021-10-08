@@ -6,7 +6,7 @@ import lombok.Data;
 
 public class SampleDTO {
 	
-	private String name;
-	private int age;
+	private String name; // AAA
+	private int age;	// 10
 	
 }
