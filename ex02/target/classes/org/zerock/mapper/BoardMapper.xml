@@ -14,7 +14,7 @@
 		select * from tbl_board where bno = #{bno}
 	</select>
 	
-	<insert id="insert">
+	<insert id="insert">  
 		insert into tbl_board (title,content,writer)
 		values(#{title},#{content},#{writer})
 	</insert>
@@ -29,5 +29,18 @@
 		insert into tbl_board (bno,title,content,writer)
 		values (#{bno},#{title},#{content},#{writer})
 	</insert>
+	
+	<delete id="delete" >	
+		delete from tbl_board where bno = #{bno} 
+	</delete>
+	
+	<update id="update">
+		update tbl_board
+		set title = #{title},
+		content = #{content},
+		writer = #{writer},
+		updatedate=now()
+		where bno = #{bno}
+	</update>
 	
 </mapper>
