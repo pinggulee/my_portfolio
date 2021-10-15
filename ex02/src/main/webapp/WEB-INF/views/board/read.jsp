@@ -13,6 +13,13 @@
 		<tr><td>내용</td><td>${read.content}</td><tr>
 		<tr><td>작성자</td><td>${read.writer}</td><tr>
 		<tr><td>작성일자</td><td>${read.regdate}</td><tr>
+		<tr>
+			<td colspan="2">
+				<button><a href="/board/modify?bno=${read.bno}">글수정</a></button>
+				<button><a href="/board/remove?bno=${read.bno}"">글삭제</a></button>
+			</td>
+		<tr>
+		
 	</table>
 </body>
 </html>

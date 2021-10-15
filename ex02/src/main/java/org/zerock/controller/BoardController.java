@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
 import org.zerock.service.BoardService;
 
@@ -43,11 +44,33 @@ public class BoardController {
 	
 	// 글쓰기 화면에서 글쓰기 버튼을 클릭했을 때 제목, 내용, 작성자를 처리하기 위해
 	@PostMapping("register")
-	
-	//	   리턴타입       메소드명       ( 타입     변수명)
-	//	   void     add       (int     a)
-	public void registerpost(BoardVO board) {
-		log.info("register= " + board);
+	public String registerpost(BoardVO board, RedirectAttributes rttr) {
+		log.info("insert 하기전 " + board);
 		service.register(board);
+		rttr.addAttribute("bno", board.getBno());
+		return "redirect:/board/read";
+	}
+	
+	// 글수정 화면으로 이동하기 위해
+	@GetMapping("modify")
+	public void modifyGet(long bno,Model model){
+		log.info("modify");
+		model.addAttribute("modify",service.get(bno));
+	}
+	
+	// 글수정 화면에서 글수정 버튼을 클릭했을 때 제목, 내용을 처리하기 위해
+	@PostMapping("modify")
+	public String modifyPost(BoardVO board, RedirectAttributes rttr){
+		log.info("modifyPost=" + board);
+		service.modify(board);
+		rttr.addAttribute("bno", board.getBno());
+		return "redirect:/board/read";
+	}
+	
+	@GetMapping("remove")
+	public String remove(long bno){
+		log.info("remove=" + bno);
+		service.remove(bno);
+		return "redirect:/board/list";
 	}
 }
